@@ -29,6 +29,23 @@
 </head>
 
 <style>
+
+  #subtitle-container {
+  position: absolute;
+  top: 60%;              /* ⬇ Positioned slightly lower than center */
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform 0.05s linear;
+
+  padding: 6px 16px;     /* Smaller size */
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;
+  border-radius: 12px;
+  color: white;
+  display: none;
+  white-space: nowrap;
+}
   /* Button Styles */
   .scan-buttons {
     position: absolute;

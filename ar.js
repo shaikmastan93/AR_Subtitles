@@ -630,29 +630,34 @@ tap.addEventListener("click", () => {
 
 function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
-  const gamma = event.gamma;
+  const gamma = event.gamma || 0;
 
   // Show the container
   subtitleContainer.style.display = 'flex';
 
-  let rotateDeg = 0;
-  if (gamma <= -70) {
-    rotateDeg = 90;
-  } else if (gamma >= 70) {
-    rotateDeg = -90;
-  } else {
-    rotateDeg = 0;
-  }
+   // Smooth rotation directly from gamma
+  const rotateDeg = gamma;
+
+  // let rotateDeg = 0;
+  // if (gamma <= -70) {
+  //   rotateDeg = 90;
+  // } else if (gamma >= 70) {
+  //   rotateDeg = -90;
+  // } else {
+  //   rotateDeg = 0;
+  // }
 
   // Switch between portrait and landscape
   if (Math.abs(gamma) < 45) {
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
     subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
+    subtitleContainer.style.transition = 'transform 0.05s linear';
   } else {
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
     subtitleContainer.style.transform = `translateY(-50%) rotate(${rotateDeg}deg)`;
+    subtitleContainer.style.transition = 'transform 0.05s linear';
   }
 }
 
