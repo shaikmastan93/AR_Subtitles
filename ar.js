@@ -635,24 +635,20 @@ function handleOrientation(event) {
   // Show the container
   subtitleContainer.style.display = 'flex';
 
-  let rotateDeg = 0;
-  if (gamma <= -70) {
-    rotateDeg = 90;
-  } else if (gamma >= 70) {
-    rotateDeg = -90;
-  } else {
-    rotateDeg = 0;
-  }
+  // Clamp and invert for natural screen direction
+  let rotateDeg = Math.max(-90, Math.min(90, -gamma)); // -gamma keeps direction correct
 
-  // Switch between portrait and landscape
+  // Set transform with smooth readable rotation
+  subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
+  subtitleContainer.style.transformOrigin = 'center center';
+
+  // Switch classes based on tilt
   if (Math.abs(gamma) < 45) {
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
-    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   } else {
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
 
