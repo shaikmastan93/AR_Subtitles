@@ -640,6 +640,7 @@ function handleOrientation(event) {
 
   // Rotate opposite to tilt to make text stay readable
   const rotateDeg = -clampedGamma;
+  // No chnaegs there
 
   // let rotateDeg = 0;
   // if (gamma <= -70) {
