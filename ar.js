@@ -630,20 +630,30 @@ tap.addEventListener("click", () => {
 
 function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
-  const gamma = event.gamma || 0;
+  const gamma = event.gamma;
 
-  // Show container if hidden
+  // Show the container
   subtitleContainer.style.display = 'flex';
 
-  // Apply real-time smooth 360° rotation (gamma capped to [-90, 90])
-  let rotateDeg = gamma;
+  let rotateDeg = 0;
+  if (gamma <= -70) {
+    rotateDeg = 90;
+  } else if (gamma >= 70) {
+    rotateDeg = -90;
+  } else {
+    rotateDeg = 0;
+  }
 
-  // Center rotate with transform-origin at center
-  subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
-  subtitleContainer.style.transition = 'transform 0.05s linear';
+  // Switch between portrait and landscape
+  if (Math.abs(gamma) < 45) {
+    subtitleContainer.classList.add('portrait');
+    subtitleContainer.classList.remove('landscape');
+    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
+  } else {
+    subtitleContainer.classList.add('landscape');
+    subtitleContainer.classList.remove('portrait');
+    subtitleContainer.style.transform = `translateY(-50%) rotate(${rotateDeg}deg)`;
+  }
 }
-
-window.addEventListener("deviceorientation", handleOrientation, true);
-
 
 window.addEventListener("deviceorientation", handleOrientation, true);
