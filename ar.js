@@ -636,9 +636,9 @@ function handleOrientation(event) {
   subtitleContainer.style.display = 'flex';
 
   let rotateDeg = 0;
-  if (gamma <= 0) {
+  if (gamma <= -70) {
     rotateDeg = 90;
-  } else if (gamma >= 0) {
+  } else if (gamma >= 70) {
     rotateDeg = -90;
   } else {
     rotateDeg = 0;
