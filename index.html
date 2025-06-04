@@ -31,7 +31,7 @@
 <style>
   #subtitle-container {
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   padding: 20px 40px;
   font-size: 1.5rem;
@@ -39,6 +39,15 @@
   border: 2px solid white;
   border-radius: 12px;
   transform: translate(-50%, -50%) rotate(0deg);
+  transition: transform 0.1s ease-in-out;
+
+  height: 40px;               /* ⬇ Reduced height */
+  line-height: 20px;          /* Center text vertically */
+  padding: 0 16px;            /* Horizontal padding only */
+  font-size: 1rem;            /* Smaller text */
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid white;    /* Thinner border */
+  border-radius: 12px;
   transition: transform 0.1s ease-in-out;
 }
   /* Button Styles */
