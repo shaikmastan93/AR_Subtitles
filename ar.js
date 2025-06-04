@@ -628,37 +628,21 @@ tap.addEventListener("click", () => {
 // window.addEventListener("deviceorientation", handleOrientation, true);
 
 
-function handleOrientation(event) {
-  const subtitleContainer = document.getElementById("subtitle-container");
-  const gamma = event.gamma || 0;
 
-  // Show the container
-  subtitleContainer.style.display = 'flex';
 
-   // Smooth rotation directly from gamma
-  const rotateDeg = gamma;
 
-  // let rotateDeg = 0;
-  // if (gamma <= -70) {
-  //   rotateDeg = 90;
-  // } else if (gamma >= 70) {
-  //   rotateDeg = -90;
-  // } else {
-  //   rotateDeg = 0;
-  // }
+window.addEventListener('deviceorientation', (event) => {
+  const gamma = event.gamma;
+  const subtitle = document.getElementById('subtitle-container');
 
-  // Switch between portrait and landscape
-  if (Math.abs(gamma) < 45) {
-    subtitleContainer.classList.add('portrait');
-    subtitleContainer.classList.remove('landscape');
-    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
-    subtitleContainer.style.transition = 'transform 0.05s linear';
-  } else {
-    subtitleContainer.classList.add('landscape');
-    subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.transform = `translateY(-50%) rotate(${rotateDeg}deg)`;
-    subtitleContainer.style.transition = 'transform 0.05s linear';
-  }
-}
+  // Clamp gamma to avoid over-rotation
+  let rotateDeg = Math.max(-90, Math.min(90, gamma));
 
-window.addEventListener("deviceorientation", handleOrientation, true);
+  // Apply 3D rotation (optional) or simple 2D rotation
+  subtitle.style.transform = `rotate(${rotateDeg}deg)`;
+
+  // Smooth transition
+  subtitle.style.transition = 'transform 0.1s ease-out';
+});
+
+
