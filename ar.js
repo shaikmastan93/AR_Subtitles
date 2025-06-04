@@ -627,33 +627,30 @@ tap.addEventListener("click", () => {
 
 // window.addEventListener("deviceorientation", handleOrientation, true);
 
-
 function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
-  const gamma = event.gamma;
+  const gamma = event.gamma || 0; // Left (-90°) to Right (+90°)
 
   // Show the container
   subtitleContainer.style.display = 'flex';
 
-  let rotateDeg = 0;
-  if (gamma <= -70) {
-    rotateDeg = 90;
-  } else if (gamma >= 70) {
-    rotateDeg = -90;
-  } else {
-    rotateDeg = 0;
-  }
+  // Clamp gamma to ensure safe rotation range
+  const clampedGamma = Math.max(-90, Math.min(90, gamma));
 
-  // Switch between portrait and landscape
+  // Apply exact opposite rotation for natural feel
+  const rotateDeg = -clampedGamma;
+
+  // Optional: Use gamma threshold to apply class (for styling)
   if (Math.abs(gamma) < 45) {
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
-    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   } else {
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.transform = `translateY(-50%) rotate(${rotateDeg}deg)`;
   }
-}
 
+  // Always keep the box centered and smoothly rotated
+  subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
+}
 window.addEventListener("deviceorientation", handleOrientation, true);
+
