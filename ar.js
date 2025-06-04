@@ -630,26 +630,19 @@ tap.addEventListener("click", () => {
 
 function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
-  const gamma = event.gamma || 0;
+  const gamma = event.gamma;
 
   // Show the container
   subtitleContainer.style.display = 'flex';
 
-    // Clamp gamma for safety
-  const clampedGamma = Math.max(-90, Math.min(90, gamma));
-
-  // Rotate opposite to tilt to make text stay readable
-  const rotateDeg = -clampedGamma;
-  // No chnaegs there
-
-  // let rotateDeg = 0;
-  // if (gamma <= -70) {
-  //   rotateDeg = 90;
-  // } else if (gamma >= 70) {
-  //   rotateDeg = -90;
-  // } else {
-  //   rotateDeg = 0;
-  // }
+  let rotateDeg = 0;
+  if (gamma <= -70) {
+    rotateDeg = 90;
+  } else if (gamma >= 70) {
+    rotateDeg = -90;
+  } else {
+    rotateDeg = 0;
+  }
 
   // Switch between portrait and landscape
   if (Math.abs(gamma) < 45) {
