@@ -30,17 +30,21 @@
 
 <style>
   #subtitle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  width: auto;
-  background: #333;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s linear; /* Smooth rotation */
+  display: none;
+  background: rgba(0,0,0,0.7);
   color: white;
-  font-size: 18px;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-align: center;
 }
+
   /* Button Styles */
   .scan-buttons {
     position: absolute;

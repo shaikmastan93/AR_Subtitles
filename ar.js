@@ -628,21 +628,23 @@ tap.addEventListener("click", () => {
 // window.addEventListener("deviceorientation", handleOrientation, true);
 
 
+function handleOrientation(event) {
+  const subtitleContainer = document.getElementById("subtitle-container");
+  const gamma = event.gamma || 0;
 
+  // Show container
+  subtitleContainer.style.display = 'flex';
 
+  // Clamp gamma value to avoid extreme jitter
+  let clampedGamma = Math.max(-90, Math.min(90, gamma));
 
-window.addEventListener('deviceorientation', (event) => {
-  const gamma = event.gamma;
-  const subtitle = document.getElementById('subtitle-container');
+  // Smooth rotation: apply full rotation from -90° to +90°
+  const rotateDeg = clampedGamma;
 
-  // Clamp gamma to avoid over-rotation
-  let rotateDeg = Math.max(-90, Math.min(90, gamma));
+  // Apply smooth rotation transform with readable text
+  subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
 
-  // Apply 3D rotation (optional) or simple 2D rotation
-  subtitle.style.transform = `rotate(${rotateDeg}deg)`;
-
-  // Smooth transition
-  subtitle.style.transition = 'transform 0.1s ease-out';
-});
-
-
+  // Optional: Set transform-origin to keep it centered
+  subtitleContainer.style.transformOrigin = 'center center';
+}
+window.addEventListener("deviceorientation", handleOrientation, true);
