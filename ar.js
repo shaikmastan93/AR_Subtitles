@@ -627,7 +627,7 @@ tap.addEventListener("click", () => {
 
 // window.addEventListener("deviceorientation", handleOrientation, true);
 
-
+// ---------------------original script----------------------------------
 
 function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
@@ -653,11 +653,41 @@ function handleOrientation(event) {
   } else {
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.top = '65%'; // 👈 moved slightly down
-    subtitleContainer.style.left = '50%';
-    subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
     subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
 
 window.addEventListener("deviceorientation", handleOrientation, true);
+
+// function handleOrientation(event) {
+//   const subtitleContainer = document.getElementById("subtitle-container");
+//   const gamma = event.gamma;
+
+//   // Show the container
+//   subtitleContainer.style.display = 'flex';
+
+//   let rotateDeg = 0;
+//   if (gamma <= -70) {
+//     rotateDeg = 90;
+//   } else if (gamma >= 70) {
+//     rotateDeg = -90;
+//   } else {
+//     rotateDeg = 0;
+//   }
+
+//   // Switch between portrait and landscape
+//   if (Math.abs(gamma) < 45) {
+//     subtitleContainer.classList.add('portrait');
+//     subtitleContainer.classList.remove('landscape');
+//     subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
+//   } else {
+//     subtitleContainer.classList.add('landscape');
+//     subtitleContainer.classList.remove('portrait');
+//     subtitleContainer.style.top = '65%'; // 👈 moved slightly down
+//     subtitleContainer.style.left = '50%';
+//     subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
+//     subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
+//   }
+// }
+
+// window.addEventListener("deviceorientation", handleOrientation, true);
