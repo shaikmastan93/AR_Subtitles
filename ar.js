@@ -679,7 +679,8 @@ function handleOrientation(event) {
   }
 
   // Apply rotation with smooth transition
-  subtitleContainer.style.transition = 'transform 1.2s ease-in-out';
+  subtitleContainer.style.transition = 'transform 1.2s ease-in-out, top 0.5s ease';
+
 
   // Add or remove class for orientation styling if needed
   if (Math.abs(gamma) < 45) {
