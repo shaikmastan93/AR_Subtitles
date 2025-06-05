@@ -628,6 +628,7 @@ tap.addEventListener("click", () => {
 // window.addEventListener("deviceorientation", handleOrientation, true);
 
 
+
 function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
   const gamma = event.gamma;
@@ -646,16 +647,14 @@ function handleOrientation(event) {
 
   // Switch between portrait and landscape
   if (Math.abs(gamma) < 45) {
-    // Portrait mode
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
-    subtitleContainer.style.top = '50%';
-    subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
+    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   } else {
-    // Landscape mode
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.top = '90%'; // Move slightly down
-    subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
+    subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
+
+window.addEventListener("deviceorientation", handleOrient)
