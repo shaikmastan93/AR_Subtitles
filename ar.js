@@ -632,29 +632,28 @@ function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
   const gamma = event.gamma;
 
+  // Show the container
   subtitleContainer.style.display = 'flex';
 
-  // Calculate rotation angle
-  let rotateDeg = Math.max(-90, Math.min(90, -gamma)); // Inverted for natural rotation
+  let rotateDeg = 0;
+  if (gamma <= -70) {
+    rotateDeg = 90;
+  } else if (gamma >= 70) {
+    rotateDeg = -90;
+  } else {
+    rotateDeg = 0;
+  }
 
-  // Apply rotation
-  subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
-  subtitleContainer.style.transformOrigin = 'center center';
-
-  // Adjust position based on mode
+  // Switch between portrait and landscape
   if (Math.abs(gamma) < 45) {
-    // Portrait mode
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
-    
-    subtitleContainer.style.top = '50%';
-    subtitleContainer.style.transform += ' translate(-50%, -50%)';
+    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   } else {
-    // Landscape mode
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    
-    subtitleContainer.style.top = '60%'; // Push it a bit down
-    subtitleContainer.style.transform += ' translate(-50%, -50%)';
+    subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
+
+window.addEventListener("deviceorientation", handleOrientation, true);
