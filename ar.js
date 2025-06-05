@@ -632,24 +632,29 @@ function handleOrientation(event) {
   const subtitleContainer = document.getElementById("subtitle-container");
   const gamma = event.gamma;
 
-  // Show the container
   subtitleContainer.style.display = 'flex';
 
-  // Clamp and invert for natural screen direction
-  let rotateDeg = Math.max(-90, Math.min(90, -gamma)); // -gamma keeps direction correct
+  // Calculate rotation angle
+  let rotateDeg = Math.max(-90, Math.min(90, -gamma)); // Inverted for natural rotation
 
-  // Set transform with smooth readable rotation
+  // Apply rotation
   subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   subtitleContainer.style.transformOrigin = 'center center';
 
-  // Switch classes based on tilt
+  // Adjust position based on mode
   if (Math.abs(gamma) < 45) {
+    // Portrait mode
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
+    
+    subtitleContainer.style.top = '50%';
+    subtitleContainer.style.transform += ' translate(-50%, -50%)';
   } else {
+    // Landscape mode
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
+    
+    subtitleContainer.style.top = '60%'; // Push it a bit down
+    subtitleContainer.style.transform += ' translate(-50%, -50%)';
   }
 }
-
-window.addEventListener("deviceorientation", handleOrientation, true);

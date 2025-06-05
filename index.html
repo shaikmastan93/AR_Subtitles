@@ -30,7 +30,12 @@
 
 <style>
   #subtitle-container {
-  transition: transform 0.2s ease-out;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease-out, top 0.2s ease-out;
+  display: none;
+  z-index: 9999;
 }
   /* Button Styles */
   .scan-buttons {
