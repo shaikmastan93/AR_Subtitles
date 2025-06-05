@@ -649,7 +649,6 @@ function handleOrientation(event) {
   if (Math.abs(gamma) < 45) {
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
-
     subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   } else {
     subtitleContainer.classList.add('landscape');
