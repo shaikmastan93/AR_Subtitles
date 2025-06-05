@@ -678,20 +678,21 @@ function handleOrientation(event) {
     rotateDeg = 0; // Portrait
   }
 
-  // Smooth rotation
-  subtitleContainer.style.transition = 'transform 1.2s ease-in-out, top 0.5s ease';
+  // Apply rotation with smooth transition
+  subtitleContainer.style.transition = 'transform 1.2s ease-in-out';
 
+  // Add or remove class for orientation styling if needed
   if (Math.abs(gamma) < 45) {
-    // Portrait mode: center vertically
+    // Portrait Mode
     subtitleContainer.classList.add('portrait');
     subtitleContainer.classList.remove('landscape');
-    subtitleContainer.style.top = '50%';
-    subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
+    subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   } else {
-    // Landscape mode: shift downward
+    // Landscape Mode
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.top = '60%'; // Move subtitle lower
-    subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
+    subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
+
+window.addEventListener("deviceorientation", handleOrientation, true);
