@@ -679,8 +679,7 @@ function handleOrientation(event) {
   }
 
   // Apply rotation with smooth transition
-  subtitleContainer.style.transition = 'transform 1.2s ease-in-out, top 1.5s ease';
-
+  subtitleContainer.style.transition = 'transform 1.2s ease-in-out';
 
   // Add or remove class for orientation styling if needed
   if (Math.abs(gamma) < 45) {
@@ -692,8 +691,6 @@ function handleOrientation(event) {
     // Landscape Mode
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    // subtitleContainer.style.bottom = '50%'; // Move subtitle lower
-    // subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
     subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
