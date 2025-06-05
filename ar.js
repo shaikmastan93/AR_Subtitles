@@ -654,6 +654,8 @@ function handleOrientation(event) {
   } else {
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
+    subtitleContainer.style.top = '65%'; // 👈 moved slightly down
+    subtitleContainer.style.left = '50%';
     subtitleContainer.style.transform = `translateX(-50%) rotate(${rotateDeg}deg)`;
   }
 }
