@@ -691,8 +691,6 @@ function handleOrientation(event) {
     // Landscape Mode
     subtitleContainer.classList.add('landscape');
     subtitleContainer.classList.remove('portrait');
-    subtitleContainer.style.top = '-50%'; // move down in landscape
-    // subtitleContainer.style.transform = `translate(-50%, -50%) rotate(${rotateDeg}deg)`;
     subtitleContainer.style.transform = `rotate(${rotateDeg}deg)`;
   }
 }
