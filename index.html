@@ -29,18 +29,20 @@
 </head>
 
 <style>
-  .center-video {
+.center-video {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 90%;
-  max-height: 80%;
-  z-index: 9999; /* make sure it stays on top */
-  background: #000; /* optional: adds contrast behind video */
-  border-radius: 12px; /* optional: rounded corners */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* optional: soft shadow */
+  max-width: 90vw;
+  max-height: 80vh;
+  z-index: 10000;
+  background-color: #000;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: none; /* keep hidden initially */
 }
+
 
  /* #subtitle-container {
   position: fixed;
