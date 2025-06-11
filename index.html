@@ -29,37 +29,23 @@
 </head>
 
 <style>
-.center-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+#dialogVideo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: none;
   max-width: 90vw;
   max-height: 80vh;
   z-index: 10000;
   background-color: #000;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  display: none; /* keep hidden initially */
 }
-
-
- /* #subtitle-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  transition: transform 0.2s ease-in-out;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background: rgba(77, 72, 72, 0.7);
-  padding: 10px 20px;
-  border-radius: 12px;
-  color: #fff;
-} */
-
-  /* Button Styles */
+ /* Button Styles */
   .scan-buttons {
     position: absolute;
     top: 10px;
@@ -220,11 +206,7 @@
 
   <!-- Image Buttons -->
   <div class="scan-buttons">
-    <!-- <img
-        src="./assets/img/image1.png"
-        alt="Button 1"
-        onclick="showDialog('./assets/img/image1.png', 'This is the first button content.')"
-      /> -->
+  
 
     <img src="./assets/img/sangeethaicon.png" alt="Button 1"
       onclick="showDialog(null, './assets/vdo/sangeetha.mp4','')" />
@@ -266,18 +248,10 @@
             <button class="list-group-item my-2 mx-auto glass option" onclick="checkAnswer(2)"></button>
           </li>
         </ul>
-        <!-- <img
-              src="./assets/gifs/happy.gif"
-              class="img-fluid mx-auto d-block"
-              width="200"
-              height="200"
-              alt=""
-            /> -->
+      
       </div>
       <div class="col-12 glass_modal_footer">
-        <!-- <button class="btn btn-primary" id="next" onclick="nextQuestion()">
-              Next
-            </button> -->
+      
         <button class="list-group-item mx-auto w-50 glass next" onclick="nextQuestion()">
           Next
         </button>
@@ -387,219 +361,6 @@
 
   <script src="./ar.js"></script>
 
-  <script>
-    // document.addEventListener("DOMContentLoaded", () => {
-    //   const assets = document.getElementById("assets");
-
-    //   const characters = [
-    //     { char: `Thabela and dance `, count: 7 },
-    //     { char: `sitar `, count: 3 },
-    //     { char: `ms `, count: 3 },
-    //     { char: `ag `, count: 3 },
-    //     { char: `arch `, count: 3 },
-    //     { char: `san `, count: 7 },
-    //   ];
-
-    //   const frameSources = {};
-
-    //   characters.forEach(({ char, count }) => {
-    //     frameSources[char] = [];
-    //     for (let i = 0; i < count; i++) {
-    //       const img = document.createElement("img");
-    //       if (!img.src) {
-    //         img.src = `./animate/${char}${i + 1}.png`;
-    //       }
-    //       const imgId = `${char.trim().replace(/\s+/g, "-")}_${i + 1}`;
-    //       img.setAttribute("id", imgId);
-    //       img.setAttribute("src", `./animate/${char}${i + 1}.png`);
-    //       assets.appendChild(img);
-    //       frameSources[char].push(`#${imgId}`);
-    //     }
-    //   });
-
-    //   const targets = [
-    //     {
-    //       targetId: "target0",
-    //       imageId: "anim0",
-    //       character: "Thabela and dance ",
-    //     },
-    //     { targetId: "target1", imageId: "anim1", character: "sitar " },
-    //     { targetId: "target2", imageId: "anim2", character: "ms " },
-    //     { targetId: "target4", imageId: "anim4", character: "ag " },
-    //     { targetId: "target5", imageId: "anim5", character: "arch " },
-    //     { targetId: "target6", imageId: "anim6", character: "san " },
-    //   ];
-
-    //   targets.forEach(({ targetId, imageId, character }) => {
-    //     const target = document.getElementById(targetId);
-    //     const plane = document.getElementById(imageId);
-    //     const frames = frameSources[character];
-    //     let frameIndex = 0;
-    //     let animationInterval;
-    //     let lostTimeout;
-
-    //     target.addEventListener("targetFound", () => {
-    //       console.log("Target Found!");
-    //       clearTimeout(lostTimeout);
-    //       frameIndex = 0;
-    //       animationInterval = setInterval(() => {
-    //         plane.setAttribute("src", frames[frameIndex]);
-    //         frameIndex = (frameIndex + 1) % frames.length;
-    //       }, 200);
-    //     });
-
-    //     target.addEventListener("targetLost", () => {
-    //       console.log("Cleaning up animation due to lost target.");
-    //       clearInterval(animationInterval);
-    //       // plane.setAttribute("src", "");
-    //     });
-    //   });
-    // });
-    // AFRAME.registerComponent("play-audio", {
-    //   schema: {
-    //     sound: { type: "selector" },
-    //     subtitles: { type: "asset" }, // path to JSON file or inline JSON
-    //   },
-
-    //   init: function () {
-    //     const entity = this.el;
-    //     const sound = this.data.sound;
-    //     const subtitleContainer =
-    //       document.getElementById("subtitle-container");
-    //     let subtitles = [];
-    //     let subtitleInterval;
-
-    //     // Load subtitles (assuming it's a JSON file)
-    //     fetch(this.data.subtitles)
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         subtitles = data;
-    //       })
-    //       .catch((err) => {
-    //         console.error("Subtitle loading error:", err);
-    //       });
-
-    //     function showSubtitle(currentTime) {
-    //       const line = subtitles.find(
-    //         (s) => currentTime >= s.start && currentTime < s.end
-    //       );
-    //       subtitleContainer.innerText = line ? line.text : "";
-    //     }
-
-    //     entity.addEventListener("targetFound", () => {
-    //       console.log("Target Found! Playing audio...");
-    //       sound.play();
-
-    //       subtitleInterval = setInterval(() => {
-    //         showSubtitle(sound.currentTime);
-    //       }, 300);
-    //     });
-
-    //     entity.addEventListener("targetLost", () => {
-    //       console.log("Target Lost! Stopping audio...");
-
-    //       sound.pause();
-    //       sound.currentTime = 0;
-    //       clearInterval(subtitleInterval);
-    //       subtitleContainer.innerText = "";
-    //     });
-    //   },
-    // });
-  </script>
-
-  <!-- <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const assets = document.getElementById("assets");
-
-        const characters = [
-          { char: `Thabela and dance `, count: 7 },
-          { char: `sitar `, count: 3 },
-          { char: `ms `, count: 5 },
-          { char: `ag `, count: 3 },
-          { char: `arch `, count: 3 },
-          { char: `san `, count: 7 },
-        ];
-
-        const frameSources = {};
-
-        characters.forEach(({ char, count }) => {
-          frameSources[char] = [];
-          for (let i = 0; i < count; i++) {
-            const img = document.createElement("img");
-            if (!img.src) {
-              img.src = `./animate/${char}${i + 1}.png`;
-            }
-            const imgId = `${char.trim().replace(/\s+/g, "-")}_${i + 1}`;
-            img.setAttribute("id", imgId);
-            img.setAttribute("src", `./animate/${char}${i + 1}.png`);
-            assets.appendChild(img);
-            frameSources[char].push(`#${imgId}`);
-          }
-        });
-
-        const targets = [
-          {
-            targetId: "target0",
-            imageId: "anim0",
-            character: "Thabela and dance ",
-          },
-          { targetId: "target1", imageId: "anim1", character: "sitar " },
-          { targetId: "target2", imageId: "anim2", character: "ms " },
-          { targetId: "target4", imageId: "anim4", character: "ag " },
-          { targetId: "target5", imageId: "anim5", character: "arch " },
-          { targetId: "target6", imageId: "anim6", character: "san " },
-        ];
-
-        targets.forEach(({ targetId, imageId, character }) => {
-          const target = document.getElementById(targetId);
-          const plane = document.getElementById(imageId);
-          const frames = frameSources[character];
-          let frameIndex = 0;
-          let animationInterval;
-          let lostTimeout;
-
-          target.addEventListener("targetFound", () => {
-            console.log("Target Found!");
-            clearTimeout(lostTimeout);
-            frameIndex = 0;
-            animationInterval = setInterval(() => {
-              plane.setAttribute("src", frames[frameIndex]);
-              frameIndex = (frameIndex + 1) % frames.length;
-            }, 200);
-          });
-
-          target.addEventListener("targetLost", () => {
-            console.log("Cleaning up animation due to lost target.");
-            clearInterval(animationInterval);
-            // plane.setAttribute("src", "");
-          });
-        });
-      });
-
-
-      AFRAME.registerComponent("play-audio", {
-        schema: {
-          sound: { type: "selector" },
-        },
-        init: function () {
-          let entity = this.el;
-          let sound = this.data.sound;
-
-          entity.addEventListener("targetFound", () => {
-            console.log("Target Found! Playing audio...");
-            sound.play();
-          });
-
-          entity.addEventListener("targetLost", () => {
-            console.log("Target Lost! Stopping audio...");
-            
-            sound.pause();
-            sound.currentTime = 0;
-          });
-        },
-      });
-
-    </script> -->
 </body>
 
 </html>
