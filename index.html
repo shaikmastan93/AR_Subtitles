@@ -29,23 +29,25 @@
 </head>
 
 <style>
-
-#dialogVideo {
-  position: absolute;
+ 
+#dialogBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* vertically center */
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
-  right: 0;
-  margin: auto;
-  display: none;
-  max-width: 90vw;
-  max-height: 80vh;
-  z-index: 10000;
-  background-color: #000;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.95); /* Optional */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
- /* Button Styles */
+
+  /* Button Styles */
   .scan-buttons {
     position: absolute;
     top: 10px;
@@ -206,7 +208,7 @@
 
   <!-- Image Buttons -->
   <div class="scan-buttons">
-  
+
 
     <img src="./assets/img/sangeethaicon.png" alt="Button 1"
       onclick="showDialog(null, './assets/vdo/sangeetha.mp4','')" />
@@ -248,10 +250,10 @@
             <button class="list-group-item my-2 mx-auto glass option" onclick="checkAnswer(2)"></button>
           </li>
         </ul>
-      
+       
       </div>
       <div class="col-12 glass_modal_footer">
-      
+        
         <button class="list-group-item mx-auto w-50 glass next" onclick="nextQuestion()">
           Next
         </button>
@@ -361,6 +363,11 @@
 
   <script src="./ar.js"></script>
 
+  <script>
+    
+  </script>
+
+  
 </body>
 
 </html>
