@@ -30,6 +30,41 @@
 
 <style>
  
+ /* ✅ Add or update this block */
+#subtitle-container {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;           /* Fixed width to keep subtitle centered */
+  max-width: 90vw;
+  min-width: 300px;       /* Prevent too small with short text */
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  white-space: pre-wrap;   /* Wrap text properly */
+  word-break: break-word;  /* Prevent overflow */
+  border-radius: 8px;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+}
+/* Portrait */
+#subtitle-container.portrait {
+  transform: translateX(-50%) rotate(0deg);
+}
+
+/* Landscape right */
+#subtitle-container.landscape {
+  transform: translateX(36%) rotate(-90deg);
+}
+
+/* Landscape left */
+#subtitle-container.landscape {
+  transform: translateX(-36%) rotate(90deg);
+}
+
 #dialogBox {
   display: flex;
   flex-direction: column;

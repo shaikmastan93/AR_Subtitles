@@ -458,18 +458,21 @@ targets.forEach(({ targetId, imageId, character }) => {
 function showSubtitle(currentTime) {
   const subtitleContainer = document.getElementById("subtitle-container");
 
+
   // Check if subtitles are loaded and if it's an array
   if (!subtitles || !Array.isArray(subtitles)) {
     console.warn("Subtitles are not loaded or not an array.");
     subtitleContainer.style.display = "none";
     return; // Exit early if subtitles are not available
   }
+  
 
   // Find the subtitle line based on currentTime
   const line = subtitles.find(
     (s) => currentTime >= s.start && currentTime < s.end
   );
 
+   
   // If a subtitle line is found, display it; otherwise, hide the container
   subtitleContainer.style.display = line ? "block" : "none";
   subtitleContainer.innerText = line ? line.text : "";
